@@ -179,6 +179,19 @@ public class UserDao implements Serializable {
             em.close();
         }
     }
+    
+    public User findUserByUsername(String username){
+        EntityManager em = getEntityManager();
+        User u = null;
+        try {
+            Query q = em.createNamedQuery("User.findByUsername");
+            q.setParameter("username", username);
+            u = (User) q.getSingleResult();
+        } finally{
+            em.close();
+            return u;
+        }
+    }
 
     public int getUserCount() {
         EntityManager em = getEntityManager();
