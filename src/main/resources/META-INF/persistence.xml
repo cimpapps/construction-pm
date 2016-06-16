@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.cimpapps_construction-pm-db_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.cimpapps.construction.pm.models.ProjectCategories</class>
+    <class>com.cimpapps.construction.pm.models.Users</class>
+    <class>com.cimpapps.construction.pm.models.Drawings</class>
+    <class>com.cimpapps.construction.pm.models.ProjectLayers</class>
+    <class>com.cimpapps.construction.pm.models.EmployeePositions</class>
+    <class>com.cimpapps.construction.pm.models.Employees</class>
+    <class>com.cimpapps.construction.pm.models.Projects</class>
+    <class>com.cimpapps.construction.pm.models.Project</class>
+    <class>com.cimpapps.construction.pm.models.EmployeePosition</class>
+    <class>com.cimpapps.construction.pm.models.Drawing</class>
+    <class>com.cimpapps.construction.pm.models.ProjectCategory</class>
+    <class>com.cimpapps.construction.pm.models.Employee</class>
+    <class>com.cimpapps.construction.pm.models.User</class>
+    <class>com.cimpapps.construction.pm.models.ProjectLayer</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/construction-pm-db?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+    </properties>
+  </persistence-unit>
+</persistence>
