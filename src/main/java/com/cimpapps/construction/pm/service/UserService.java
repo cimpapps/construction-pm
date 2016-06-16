@@ -7,7 +7,6 @@ import construction.pm.lib.dto.UserDTO;
 import construction.pm.lib.rmi.AbstractUserRemote;
 import javax.persistence.EntityManagerFactory;
 
-
 public class UserService implements AbstractUserRemote {
 
     private static final UserService SINGLETON = new UserService();
@@ -24,18 +23,20 @@ public class UserService implements AbstractUserRemote {
 
     @Override
     public UserDTO findByUsername(String username) {
-        
+
         User u = dao.findUserByUsername(username);
         UserDTO userDto = new UserDTO();
-        
+
         if (u != null) {
             userDto.setId(u.getId());
             userDto.setUsername(u.getUsername());
             userDto.setPassword(u.getPassword());
-            
+
             return userDto;
-        }else
+        } else {
             return null;
+        }
+
     }
 
     @Override
@@ -75,7 +76,12 @@ public class UserService implements AbstractUserRemote {
     }
 
     @Override
-    public UserDTO logIn(UserDTO user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public UserDTO logIn(UserDTO userDto) {
+        User u = dao.findUserByUsername(userDto.getUsername());
+        if (u == null) {
+            return null;
+        } else if (u.getPassword().equals(userDto.getPassword())) {
+            return userDto;
+        }
     }
 }
