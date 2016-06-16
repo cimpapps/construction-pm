@@ -3,6 +3,7 @@ package com.cimpapps.construction.pm.service;
 import com.cimpapps.construction.pm.dao.UserDao;
 import com.cimpapps.construction.pm.dao.exceptions.NonexistentEntityException;
 import com.cimpapps.construction.pm.models.User;
+import com.cimpapps.construction.pm.service.EntityManagerFactorySingleton;
 import construction.pm.lib.dto.UserDTO;
 import construction.pm.lib.rmi.AbstractUserRemote;
 import javax.persistence.EntityManagerFactory;
@@ -14,7 +15,7 @@ public class UserService implements AbstractUserRemote {
 
     private UserService() {
         EntityManagerFactory emf = EntityManagerFactorySingleton.getInstance().getEntityMangerFactory();
-        UserDao dao = new UserDao(emf);
+        dao = new UserDao(emf);
     }
 
     public static UserService getInstance() {
@@ -71,6 +72,7 @@ public class UserService implements AbstractUserRemote {
             dao.create(u);
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -80,8 +82,10 @@ public class UserService implements AbstractUserRemote {
         User u = dao.findUserByUsername(userDto.getUsername());
         if (u == null) {
             return null;
-        } else if (u.getPassword().equals(userDto.getPassword())) {
+        } 
+        else if (u.getPassword().equals(userDto.getPassword())) {
             return userDto;
         }
+        return null;
     }
 }

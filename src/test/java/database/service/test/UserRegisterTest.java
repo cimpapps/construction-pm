@@ -22,33 +22,25 @@ public class UserRegisterTest {
     
     public UserRegisterTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     @Test
     public void testRegisterUser(){
         UserDTO u = new UserDTO();
-        u.setUsername("catalin");
-        u.setPassword("cimpoeru");
+        
+        u.setUsername("Catalin");
+        u.setPassword("Cimpoeru");
         
         UserService service = UserService.getInstance();
         
         boolean register = service.register(u);
         assertTrue(register);
+        
+        
+        UserDTO userDto = service.logIn(u);
+        assertNotNull(userDto);
+        
+        userDto = service.logIn(new UserDTO());
+        assertNull(userDto);
         
         register = service.register(u);
         assertFalse(register);
