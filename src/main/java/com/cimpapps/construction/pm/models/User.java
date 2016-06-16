@@ -1,6 +1,6 @@
-
 package com.cimpapps.construction.pm.models;
 
+import construction.pm.lib.dto.UserDTO;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -74,6 +74,11 @@ public class User implements Serializable {
 
     public void setEmployeeCollection(Collection<Employee> employeeCollection) {
         this.employeeCollection = employeeCollection;
+    }
+
+    public void setUserFromDto(UserDTO userDto) {
+        setUsername(userDto.getUsername());
+        setPassword(userDto.getPassword());
     }
 
     @Override

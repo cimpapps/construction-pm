@@ -49,7 +49,10 @@ public class UserRegisterTest {
         
         boolean register = service.register(u);
         assertTrue(register);
+        
         register = service.register(u);
         assertFalse(register);
+        
+        service.removeUser(u);
     }
 }
