@@ -19,6 +19,7 @@ import static org.junit.Assert.*;
  * @author catalin.cimpoeru
  */
 public class UserRegisterTest {
+    UserService service = UserService.getInstance();
     
     public UserRegisterTest() {
     }
@@ -26,25 +27,31 @@ public class UserRegisterTest {
     @Test
     public void testRegisterUser(){
         UserDTO u = new UserDTO();
-        
         u.setUsername("Catalin");
         u.setPassword("Cimpoeru");
-        
-        UserService service = UserService.getInstance();
-        
         boolean register = service.register(u);
         assertTrue(register);
-        
-        
-        UserDTO userDto = service.logIn(u);
-        assertNotNull(userDto);
-        
-        userDto = service.logIn(new UserDTO());
-        assertNull(userDto);
-        
+      
         register = service.register(u);
         assertFalse(register);
         
-        service.removeUser(u);
+        
     }
+    
+    @Test
+    public void logInTest(){
+        UserDTO u = new UserDTO();
+        u.setUsername("Catalin");
+        u.setPassword("Cimpoeru");
+        
+        u = service.logIn(u);
+        assertNotNull(u);
+        
+        service.removeUser(u);
+        u = service.logIn(u);
+        assertNull(u);
+        
+    }
+    
+  
 }
