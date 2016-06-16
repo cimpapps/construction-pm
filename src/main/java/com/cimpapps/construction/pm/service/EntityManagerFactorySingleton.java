@@ -22,4 +22,8 @@ public class EntityManagerFactorySingleton {
         return SingletonHolder.INSTANCE;
     }
     
+    public EntityManagerFactory getEntityMangerFactory(){
+        return emf;
+    }
+    
 }
