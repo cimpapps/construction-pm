@@ -1,6 +1,7 @@
 
 package com.cimpapps.construction.pm.models;
 
+import construction.pm.lib.dto.EmployeeDTO;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -57,6 +58,17 @@ public class Employee implements Serializable {
 
     public Employee(Integer id) {
         this.id = id;
+    }
+    
+    //TODO repair this method
+    public void setEmployeeFromDTO(EmployeeDTO employeeDTO){
+        setId(employeeDTO.getId());
+        setFirstName(employeeDTO.getFirstName());
+        setLastName(employeeDTO.getLastName());
+        User u = new User();
+        u.setUserFromDto(employeeDTO.getUsersId());
+        u.setId(employeeDTO.getUsersId().getId());
+        setUsersId(u);
     }
 
     public Integer getId() {
