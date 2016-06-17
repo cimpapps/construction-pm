@@ -1,3 +1,4 @@
+
 package com.cimpapps.construction.pm.models;
 
 import construction.pm.lib.dto.UserDTO;
@@ -76,11 +77,6 @@ public class User implements Serializable {
         this.employeeCollection = employeeCollection;
     }
 
-    public void setUserFromDto(UserDTO userDto) {
-        setUsername(userDto.getUsername());
-        setPassword(userDto.getPassword());
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -106,4 +102,8 @@ public class User implements Serializable {
         return "com.cimpapps.construction.pm.models.User[ id=" + id + " ]";
     }
 
+    public void setUserFromDto(UserDTO userDto) {
+        setUsername(userDto.getUsername());
+        setPassword(userDto.getPassword());
+    }
 }

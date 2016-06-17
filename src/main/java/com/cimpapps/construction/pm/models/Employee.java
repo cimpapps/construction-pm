@@ -1,7 +1,6 @@
 
 package com.cimpapps.construction.pm.models;
 
-import construction.pm.lib.dto.EmployeeDTO;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -25,6 +24,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e"),
     @NamedQuery(name = "Employee.findById", query = "SELECT e FROM Employee e WHERE e.id = :id"),
+    @NamedQuery(name = "Employee.findByEmail", query = "SELECT e FROM Employee e WHERE e.email = :email"),
     @NamedQuery(name = "Employee.findByFirstName", query = "SELECT e FROM Employee e WHERE e.firstName = :firstName"),
     @NamedQuery(name = "Employee.findByLastName", query = "SELECT e FROM Employee e WHERE e.lastName = :lastName")})
 public class Employee implements Serializable {
@@ -35,6 +35,9 @@ public class Employee implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Basic(optional = false)
+    @Column(name = "email")
+    private String email;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -59,16 +62,10 @@ public class Employee implements Serializable {
     public Employee(Integer id) {
         this.id = id;
     }
-    
-    //TODO repair this method
-    public void setEmployeeFromDTO(EmployeeDTO employeeDTO){
-        setId(employeeDTO.getId());
-        setFirstName(employeeDTO.getFirstName());
-        setLastName(employeeDTO.getLastName());
-        User u = new User();
-        u.setUserFromDto(employeeDTO.getUsersId());
-        u.setId(employeeDTO.getUsersId().getId());
-        setUsersId(u);
+
+    public Employee(Integer id, String email) {
+        this.id = id;
+        this.email = email;
     }
 
     public Integer getId() {
@@ -77,6 +74,14 @@ public class Employee implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {

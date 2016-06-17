@@ -18,9 +18,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "project_categories")
 @NamedQueries({
-    @NamedQuery(name = "ProjectCategory.findAll", query = "SELECT p FROM ProjectCategory p"),
-    @NamedQuery(name = "ProjectCategory.findById", query = "SELECT p FROM ProjectCategory p WHERE p.id = :id"),
-    @NamedQuery(name = "ProjectCategory.findByName", query = "SELECT p FROM ProjectCategory p WHERE p.name = :name")})
+    @NamedQuery(name = "ProjectCategorie.findAll", query = "SELECT p FROM ProjectCategorie p"),
+    @NamedQuery(name = "ProjectCategorie.findById", query = "SELECT p FROM ProjectCategorie p WHERE p.id = :id"),
+    @NamedQuery(name = "ProjectCategorie.findByName", query = "SELECT p FROM ProjectCategorie p WHERE p.name = :name")})
 public class ProjectCategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -93,7 +93,7 @@ public class ProjectCategory implements Serializable {
 
     @Override
     public String toString() {
-        return "com.cimpapps.construction.pm.models.ProjectCategory[ id=" + id + " ]";
+        return "com.cimpapps.construction.pm.models.ProjectCategorie[ id=" + id + " ]";
     }
 
 }

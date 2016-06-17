@@ -8,7 +8,6 @@ import construction.pm.lib.rmi.AbstractEmployeePositionRemote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import javax.persistence.EntityManagerFactory;
 
@@ -64,11 +63,13 @@ public class EmployeePositionService
         
         List<EmployeePosition> employeesPos = dao.findEmployeePositionEntities();
         employeesPosDTO = employeesPos.stream()
-                .map(e -> {
-                    EmployeePositionDTO dto = new EmployeePositionDTO();
-                    dto.setId(e.getId());
-                    dto.setPosition(e.getPosition());
-                    return dto;})
+                .map(e -> 
+                    {
+                        EmployeePositionDTO dto = new EmployeePositionDTO();
+                        dto.setId(e.getId());
+                        dto.setPosition(e.getPosition());
+                        return dto;
+                    })
                 .collect(Collectors.toList());
                     
         return employeesPosDTO;
