@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2016 at 12:58 PM
+-- Generation Time: Jun 18, 2016 at 09:54 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.5.33
 
@@ -45,6 +45,7 @@ CREATE TABLE `drawings` (
 
 CREATE TABLE `employees` (
   `id` int(11) NOT NULL,
+  `email` varchar(45) NOT NULL,
   `first_name` varchar(45) DEFAULT NULL,
   `last_name` varchar(45) DEFAULT NULL,
   `employee_positions_id` int(11) NOT NULL,
@@ -61,6 +62,17 @@ CREATE TABLE `employee_positions` (
   `id` int(11) NOT NULL,
   `position` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `employee_positions`
+--
+
+INSERT INTO `employee_positions` (`id`, `position`) VALUES
+(0, 'ADMIN'),
+(1, 'DL'),
+(2, 'DLD'),
+(3, 'PC'),
+(4, 'REGULAR');
 
 -- --------------------------------------------------------
 
@@ -119,6 +131,13 @@ CREATE TABLE `users` (
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'cimpoeru', 'catalin');
 
 --
 -- Indexes for dumped tables
@@ -194,7 +213,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `employee_positions`
 --
 ALTER TABLE `employee_positions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `project_categories`
 --
