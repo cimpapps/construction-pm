@@ -18,9 +18,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "project_categories")
 @NamedQueries({
-    @NamedQuery(name = "ProjectCategorie.findAll", query = "SELECT p FROM ProjectCategorie p"),
-    @NamedQuery(name = "ProjectCategorie.findById", query = "SELECT p FROM ProjectCategorie p WHERE p.id = :id"),
-    @NamedQuery(name = "ProjectCategorie.findByName", query = "SELECT p FROM ProjectCategorie p WHERE p.name = :name")})
+    @NamedQuery(name = "ProjectCategory.findAll", query = "SELECT p FROM ProjectCategory p"),
+    @NamedQuery(name = "ProjectCategory.findById", query = "SELECT p FROM ProjectCategory p WHERE p.id = :id"),
+    @NamedQuery(name = "ProjectCategorie.findByName", query = "SELECT p FROM ProjectCategory p WHERE p.name = :name")})
 public class ProjectCategory implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -7,8 +7,6 @@ import construction.pm.lib.dto.UserDTO;
 import construction.pm.lib.rmi.AbstractUserRemote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 
 public class UserService extends UnicastRemoteObject
@@ -20,7 +18,7 @@ public class UserService extends UnicastRemoteObject
         try {
             SINGLETON = new UserService();
         } catch (RemoteException ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
     private UserDao dao;
