@@ -93,6 +93,7 @@ public class UserService extends UnicastRemoteObject
         if (u == null) {
             return null;
         } else if (u.getPassword().equals(userDto.getPassword())) {
+            userDto.setId(u.getId());
             return userDto;
         }
         return null;
