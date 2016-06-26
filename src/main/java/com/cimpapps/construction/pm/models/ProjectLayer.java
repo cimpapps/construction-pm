@@ -23,7 +23,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "ProjectLayer.findAll", query = "SELECT p FROM ProjectLayer p"),
     @NamedQuery(name = "ProjectLayer.findById", query = "SELECT p FROM ProjectLayer p WHERE p.id = :id"),
     @NamedQuery(name = "ProjectLayer.findByName", query = "SELECT p FROM ProjectLayer p WHERE p.name = :name")})
-public class ProjectLayer implements Serializable {
+   public class ProjectLayer implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id

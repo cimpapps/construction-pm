@@ -10,9 +10,13 @@ import construction.pm.lib.dto.ProjectLayerDTO;
 import construction.pm.lib.rmi.AbstractLayersRemote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.persistence.EntityManagerFactory;
 
 public class ProjectLayersService
@@ -52,7 +56,7 @@ public class ProjectLayersService
     }
 
     @Override
-    public List<ProjectLayerDTO> getAllLayers() throws RemoteException {
+    public List<ProjectLayerDTO> getAllLayers() {
         List<ProjectLayerDTO> layersDto = null;
         try {
             List<ProjectLayer> layers = dao.findProjectLayerEntities();
@@ -63,4 +67,26 @@ public class ProjectLayersService
         return layersDto;
     }
 
+    @Override
+    public List<ProjectLayerDTO> getProjectLayers(ProjectDTO projectDto){
+        
+        if(projectDto == null)
+            return null;
+        
+        List<ProjectLayerDTO> layers = getAllLayers();
+        List<ProjectLayerDTO> projectLayers = new ArrayList<>();
+        
+        for (ProjectLayerDTO layer : layers) {
+            
+            if( layer.getProjectsId().getId().toString().equals(projectDto.getId().toString()))
+                projectLayers.add(layer);
+            else
+                System.out.println(layer.getProjectsId().getId() + "    " + projectDto.getId() );
+        }
+        
+        System.out.println(projectLayers);
+        
+        return projectLayers;
+    }
+    
 }

@@ -14,6 +14,7 @@ import construction.pm.lib.dto.ProjectCategoryDTO;
 import construction.pm.lib.dto.ProjectDTO;
 import construction.pm.lib.dto.ProjectLayerDTO;
 import construction.pm.lib.dto.UserDTO;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +23,9 @@ public class DbEntitiesToDtoMapper {
 
     public static ProjectLayerDTO mapLayerToDto(ProjectLayer layer) {
         ProjectLayerDTO dto = new ProjectLayerDTO();
+        
+        if(layer == null)
+            return null;
 
         dto.setId(layer.getId());
         dto.setName(layer.getName());
@@ -32,7 +36,10 @@ public class DbEntitiesToDtoMapper {
     }
 
     public static List<ProjectLayerDTO> mapLayerCollectionToDtoCollection(Collection<ProjectLayer> layers) {
-        List<ProjectLayerDTO> dto = null;
+        List<ProjectLayerDTO> dto = new ArrayList<>();
+        if(layers == null)
+            return dto;
+        
         dto = layers.stream()
                 .map(l -> mapLayerToDto(l))
                 .collect(Collectors.toList());
@@ -43,6 +50,9 @@ public class DbEntitiesToDtoMapper {
     public static EmployeeDTO mapEmployeeToDto(Employee employee) {
         EmployeeDTO dto = new EmployeeDTO();
 
+        if (employee == null)
+            return null;
+        
         dto.setId(employee.getId());
         dto.setFirstName(employee.getFirstName());
         dto.setLastName(employee.getLastName());
@@ -57,6 +67,8 @@ public class DbEntitiesToDtoMapper {
 
     public static UserDTO mapUserToDto(User user) {
         UserDTO dto = new UserDTO();
+        if(user == null)
+            return null;
 
         dto.setId(user.getId());
         dto.setUsername(user.getUsername());
@@ -67,7 +79,10 @@ public class DbEntitiesToDtoMapper {
     }
 
     public static List<EmployeeDTO> mapEmployeeCollectionToDtoCollection(Collection<Employee> employees) {
-        List<EmployeeDTO> emplDtoes = null;
+        List<EmployeeDTO> emplDtoes = new ArrayList<>();
+        if(employees == null)
+            return emplDtoes;
+        
         emplDtoes = employees.stream()
                 .map(emp -> mapEmployeeToDto(emp))
                 .collect(Collectors.toList());
@@ -78,6 +93,9 @@ public class DbEntitiesToDtoMapper {
     public static ProjectDTO mapProjectToDto(Project project) {
         ProjectDTO prDto = new ProjectDTO();
 
+        if (project == null)
+            return null;
+        
         prDto.setId(project.getId());
         prDto.setName(project.getName());
         prDto.setEmployeeCollection(mapEmployeeCollectionToDtoCollection(project.getEmployeeCollection()));
@@ -88,7 +106,9 @@ public class DbEntitiesToDtoMapper {
     }
 
     public static List<ProjectDTO> mapProjectCollecitonToDtoCollection(Collection<Project> projects) {
-        List<ProjectDTO> dto = null;
+        List<ProjectDTO> dto = new ArrayList<>();
+        if (projects == null)
+            return dto;
         dto = projects.stream()
                 .map(p -> mapProjectToDto(p))
                 .collect(Collectors.toList());
@@ -98,7 +118,8 @@ public class DbEntitiesToDtoMapper {
 
     public static ProjectCategoryDTO mapCategoryToDto(ProjectCategory category) {
         ProjectCategoryDTO dto = new ProjectCategoryDTO();
-
+        if (category == null)
+            return null;
         dto.setId(category.getId());
         dto.setName(category.getName());
         dto.setProjectCollection(mapProjectCollecitonToDtoCollection(category.getProjectCollection()));
@@ -107,7 +128,10 @@ public class DbEntitiesToDtoMapper {
     }
 
     public static List<ProjectCategoryDTO> mapCategoryCollectionToDtoCollection(Collection<ProjectCategory> categories) {
-        List<ProjectCategoryDTO> dto = null;
+        List<ProjectCategoryDTO> dto = new ArrayList<>();
+        if (categories == null)
+            return dto;
+        
         dto = categories.stream()
                 .map(c -> mapCategoryToDto(c))
                 .collect(Collectors.toList());
@@ -117,7 +141,8 @@ public class DbEntitiesToDtoMapper {
 
     public static EmployeePositionDTO mapPositionToDto(EmployeePosition position) {
         EmployeePositionDTO dto = new EmployeePositionDTO();
-
+        if (position == null)
+            return null;
         dto.setId(position.getId());
         dto.setPosition(position.getPosition());
         dto.setEmployeeCollection(mapEmployeeCollectionToDtoCollection(position.getEmployeeCollection()));
@@ -127,7 +152,8 @@ public class DbEntitiesToDtoMapper {
 
     public static DrawingDTO mapDrawingToDto(Drawing drawing) {
         DrawingDTO dto = new DrawingDTO();
-
+        if(drawing == null)
+            return null;
         dto.setId(drawing.getId());
         dto.setNumber(drawing.getNumber());
         dto.setDescription(drawing.getDescription());
@@ -141,7 +167,9 @@ public class DbEntitiesToDtoMapper {
     }
 
     public static List<DrawingDTO> mapDrawingCollectionToDtoCollection(Collection<Drawing> drawings) {
-        List<DrawingDTO> dto = null;
+        List<DrawingDTO> dto = new ArrayList<>();
+        if(drawings == null)
+            return dto;
 
         dto = drawings.stream()
                 .map(d -> mapDrawingToDto(d))

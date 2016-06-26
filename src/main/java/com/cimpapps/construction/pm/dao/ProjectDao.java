@@ -78,10 +78,7 @@ public class ProjectDao implements Serializable {
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findProject(project.getId()) != null) {
-                throw new PreexistingEntityException("Project " + project + " already exists.", ex);
-            }
-            throw ex;
+            ex.printStackTrace();
         } finally {
             if (em != null) {
                 em.close();

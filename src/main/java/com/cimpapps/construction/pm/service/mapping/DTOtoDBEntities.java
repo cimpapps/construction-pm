@@ -14,6 +14,7 @@ import construction.pm.lib.dto.ProjectCategoryDTO;
 import construction.pm.lib.dto.ProjectDTO;
 import construction.pm.lib.dto.ProjectLayerDTO;
 import construction.pm.lib.dto.UserDTO;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +22,10 @@ import java.util.stream.Collectors;
 public class DTOtoDBEntities {
 
     public static ProjectLayer mapLayerToDto(ProjectLayerDTO layer) {
+        
         ProjectLayer dbBean = new ProjectLayer();
+        if (layer == null)
+            return null;
 
         dbBean.setId(layer.getId());
         dbBean.setName(layer.getName());
@@ -32,6 +36,9 @@ public class DTOtoDBEntities {
     }
 
     public static List<ProjectLayer> mapLayerCollectionToDtoCollection(Collection<ProjectLayerDTO> layers) {
+        if (layers == null)
+            return new ArrayList<ProjectLayer>();
+        
         List<ProjectLayer> dbBean = null;
         dbBean = layers.stream()
                 .map(l -> mapLayerToDto(l))
@@ -42,6 +49,9 @@ public class DTOtoDBEntities {
 
     public static Employee mapEmployeeToDto(EmployeeDTO employee) {
         Employee dbBean = new Employee();
+        
+        if (employee == null)
+            return null;
 
         dbBean.setId(employee.getId());
         dbBean.setFirstName(employee.getFirstName());
@@ -57,7 +67,8 @@ public class DTOtoDBEntities {
 
     public static User mapUserToDto(UserDTO user) {
         User dbBean = new User();
-
+        if (user == null)
+            return null;
         dbBean.setId(user.getId());
         dbBean.setUsername(user.getUsername());
         dbBean.setPassword(user.getPassword());
@@ -67,6 +78,9 @@ public class DTOtoDBEntities {
     }
 
     public static List<Employee> mapEmployeeCollectionToDtoCollection(Collection<EmployeeDTO> employees) {
+        if (employees == null)
+            return new ArrayList<Employee>();
+        
         List<Employee> dbBean = null;
         dbBean = employees.stream()
                 .map(emp -> mapEmployeeToDto(emp))
@@ -77,7 +91,10 @@ public class DTOtoDBEntities {
 
     public static Project mapDtoToProject(ProjectDTO project) {
         Project dbBean = new Project();
-
+        
+        if (project == null)
+            return null;
+        
         dbBean.setId(project.getId());
         dbBean.setName(project.getName());
         dbBean.setEmployeeCollection(mapEmployeeCollectionToDtoCollection(project.getEmployeeCollection()));
@@ -88,7 +105,11 @@ public class DTOtoDBEntities {
     }
 
     public static List<Project> mapProjectCollecitonToDtoCollection(Collection<ProjectDTO> projects) {
-        List<Project> dbBean = null;
+        List<Project> dbBean = new ArrayList<>();
+        
+        if(projects == null)
+            return dbBean;
+        
         dbBean = projects.stream()
                 .map(p -> mapDtoToProject(p))
                 .collect(Collectors.toList());
@@ -97,8 +118,11 @@ public class DTOtoDBEntities {
     }
 
     public static ProjectCategory mapCategoryToDto(ProjectCategoryDTO category) {
+        
         ProjectCategory dbBean = new ProjectCategory();
-
+        if (category ==null)
+            return null;
+        
         dbBean.setId(category.getId());
         dbBean.setName(category.getName());
         dbBean.setProjectCollection(mapProjectCollecitonToDtoCollection(category.getProjectCollection()));
@@ -107,7 +131,10 @@ public class DTOtoDBEntities {
     }
 
     public static List<ProjectCategory> mapCategoryCollectionToDtoCollection(Collection<ProjectCategoryDTO> categories) {
-        List<ProjectCategory> dbBean = null;
+        List<ProjectCategory> dbBean = new ArrayList<>();
+        if (categories == null)
+            return dbBean;
+        
         dbBean = categories.stream()
                 .map(c -> mapCategoryToDto(c))
                 .collect(Collectors.toList());
@@ -117,7 +144,9 @@ public class DTOtoDBEntities {
 
     public static EmployeePosition mapPositionToDto(EmployeePositionDTO position) {
         EmployeePosition dbBean = new EmployeePosition();
-
+        if(position == null)
+            return null;
+        
         dbBean.setId(position.getId());
         dbBean.setPosition(position.getPosition());
         dbBean.setEmployeeCollection(mapEmployeeCollectionToDtoCollection(position.getEmployeeCollection()));
@@ -127,6 +156,8 @@ public class DTOtoDBEntities {
 
     public static Drawing mapDrawingToDto(DrawingDTO drawing) {
         Drawing dbBean = new Drawing();
+        if (drawing == null)
+            return null;
 
         dbBean.setId(drawing.getId());
         dbBean.setNumber(drawing.getNumber());
@@ -141,13 +172,16 @@ public class DTOtoDBEntities {
     }
 
     public static List<Drawing> mapDrawingCollectionToDtoCollection(Collection<DrawingDTO> drawings) {
-        List<Drawing> dto = null;
+        List<Drawing> dbBean = new ArrayList<>();
+        if(drawings == null)
+            return dbBean;
+        
 
-        dto = drawings.stream()
+        dbBean = drawings.stream()
                 .map(d -> mapDrawingToDto(d))
                 .collect(Collectors.toList());
 
-        return dto;
+        return dbBean;
     }
 }
 
