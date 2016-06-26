@@ -1,10 +1,15 @@
 package com.cimpapps.construction.pm.service;
 
+import com.cimpapps.construction.pm.dao.ProjectDao;
+import com.cimpapps.construction.pm.models.Project;
+import com.cimpapps.construction.pm.service.mapping.DTOtoDBEntities;
+import com.cimpapps.construction.pm.service.mapping.DbEntitiesToDtoMapper;
 import construction.pm.lib.dto.ProjectDTO;
 import construction.pm.lib.rmi.AbstractProjectRemote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+import javax.persistence.EntityManagerFactory;
 
 public class ProjectService
         extends UnicastRemoteObject 
@@ -12,6 +17,7 @@ public class ProjectService
 {
 
     private static ProjectService SINGLETON;
+    private ProjectDao dao;
 
     static {
         try {
@@ -22,7 +28,8 @@ public class ProjectService
     }
 
     private ProjectService() throws RemoteException {
-
+        EntityManagerFactory emf = EntityManagerFactorySingleton.getInstance().getEntityMangerFactory();
+        dao = new ProjectDao(emf);
     }
 
     public static ProjectService getInstance() {
@@ -31,11 +38,28 @@ public class ProjectService
 
     @Override
     public ProjectDTO addProject(ProjectDTO projectDto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Project project = DTOtoDBEntities.mapDtoToProject(projectDto);
+            dao.create(project);
+            return projectDto;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     public List<ProjectDTO> getAllProjects(){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       List<ProjectDTO> projectsDto = null;
+       
+        try {
+            List<Project> projects = dao.findProjectEntities();
+            projectsDto = DbEntitiesToDtoMapper.mapProjectCollecitonToDtoCollection(projects);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       
+       return projectsDto;
     }
+    
 }

@@ -1,29 +1,17 @@
 package com.cimpapps.construction.pm.service;
 
 import com.cimpapps.construction.pm.dao.ProjectLayerDao;
-import com.cimpapps.construction.pm.models.Drawing;
-import com.cimpapps.construction.pm.models.Employee;
-import com.cimpapps.construction.pm.models.EmployeePosition;
 import com.cimpapps.construction.pm.models.Project;
-import com.cimpapps.construction.pm.models.ProjectCategory;
 import com.cimpapps.construction.pm.models.ProjectLayer;
-import com.cimpapps.construction.pm.models.User;
 import com.cimpapps.construction.pm.service.mapping.DbEntitiesToDtoMapper;
-import construction.pm.lib.dto.DrawingDTO;
-import construction.pm.lib.dto.EmployeeDTO;
-import construction.pm.lib.dto.EmployeePositionDTO;
-import construction.pm.lib.dto.ProjectCategoryDTO;
 import construction.pm.lib.dto.ProjectDTO;
 import construction.pm.lib.dto.ProjectLayerDTO;
-import construction.pm.lib.dto.UserDTO;
 import construction.pm.lib.rmi.AbstractLayersRemote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import javax.persistence.EntityManagerFactory;
 
 public class ProjectLayersService
