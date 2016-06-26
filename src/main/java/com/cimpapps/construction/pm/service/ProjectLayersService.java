@@ -3,6 +3,7 @@ package com.cimpapps.construction.pm.service;
 import com.cimpapps.construction.pm.dao.ProjectLayerDao;
 import com.cimpapps.construction.pm.models.Project;
 import com.cimpapps.construction.pm.models.ProjectLayer;
+import com.cimpapps.construction.pm.service.mapping.DTOtoDBEntities;
 import com.cimpapps.construction.pm.service.mapping.DbEntitiesToDtoMapper;
 import construction.pm.lib.dto.ProjectDTO;
 import construction.pm.lib.dto.ProjectLayerDTO;
@@ -41,12 +42,7 @@ public class ProjectLayersService
     @Override
     public boolean addLayer(ProjectLayerDTO layer) throws RemoteException {
         try {
-            ProjectLayer l = new ProjectLayer();
-            l.setName(layer.getName());
-            Project project = new Project();
-            ProjectDTO prDto = layer.getProjectsId();
-            project.setId(prDto.getId());
-            l.setProjectsId(project);
+            ProjectLayer l = DTOtoDBEntities.mapLayerToDto(layer);            
             dao.create(l);
             return true;
         } catch (Exception e) {
