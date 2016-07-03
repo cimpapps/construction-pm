@@ -4,6 +4,7 @@ import com.cimpapps.construction.pm.dao.ProjectDao;
 import com.cimpapps.construction.pm.models.Project;
 import com.cimpapps.construction.pm.service.mapping.DTOtoDBEntities;
 import com.cimpapps.construction.pm.service.mapping.DbEntitiesToDtoMapper;
+import construction.pm.lib.dto.EmployeeDTO;
 import construction.pm.lib.dto.ProjectDTO;
 import construction.pm.lib.rmi.AbstractProjectRemote;
 import java.rmi.RemoteException;
@@ -60,6 +61,11 @@ public class ProjectService
         }
        
        return projectsDto;
+    }
+
+    @Override
+    public boolean assignEmployeeToProject(ProjectDTO projectDTO, EmployeeDTO employeeDTO) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
